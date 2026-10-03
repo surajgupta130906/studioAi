@@ -1,0 +1,22 @@
+# Secrets & Local Configuration
+.env
+*.env
+
+# Python Virtual Environment
+venv/
+.venv/
+env/
+
+# Python Bytecode & Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Database files
+*.sqlite3
+*.db
+
+# IDE Settings
+.vscode/
+.idea/

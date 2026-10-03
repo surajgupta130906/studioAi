@@ -1,0 +1,245 @@
+:root {
+    --bg-dark: #0b0f19;
+    --card-bg: #151d30;
+    --card-border: #23314d;
+    --accent-blue: #3b82f6;
+    --accent-purple: #8b5cf6;
+    --accent-sparkle: #f59e0b;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: #f8fafc;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Glassmorphism Navbar */
+.navbar {
+    background: rgba(21, 29, 48, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--card-border);
+}
+
+/* Animated Heading & Gradient Text */
+.gradient-title {
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+.hero-banner {
+    background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+    padding: 40px 0 20px 0;
+    text-align: center;
+}
+
+/* Animated Sparkling Explore Button */
+.btn-sparkle {
+    position: relative;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 30px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+}
+
+.btn-sparkle:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.6);
+    color: white;
+}
+
+.btn-sparkle::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(60deg, transparent, rgba(255,255,255,0.3), transparent);
+    transform: rotate(30deg);
+    animation: sparkleSweep 4s infinite;
+}
+
+@keyframes sparkleSweep {
+    0% { transform: translateX(-100%) rotate(30deg); }
+    20% { transform: translateX(100%) rotate(30deg); }
+    100% { transform: translateX(100%) rotate(30deg); }
+}
+
+/* Cards & Styling */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    color: #f8fafc;
+    transition: all 0.25s ease;
+}
+
+.asset-card {
+    position: relative;
+}
+
+.asset-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent-blue);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.asset-card img {
+    height: 220px;
+    object-fit: cover;
+    border-radius: 16px 16px 0 0;
+}
+
+.form-control, .form-select {
+    background-color: #0b0f19;
+    border: 1px solid var(--card-border);
+    color: #f8fafc;
+    border-radius: 10px;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: #0b0f19;
+    color: #fff;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 0.2rem rgba(59,130,246,0.25);
+}
+
+.avatar-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+
+.card-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+    z-index: 10;
+}
+
+.asset-card:hover .card-actions {
+    display: flex;
+}
+
+.footer {
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--card-border);
+    margin-top: auto;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    color: #f8fafc;
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+}
+
+/* Gallery Search Input Styles */
+.gallery-search-input {
+  background-color: #1a1d2d !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #3b3f58 !important;
+  border-radius: 6px !important;
+  padding: 6px 12px !important;
+  font-size: 13px !important;
+}
+
+/* Custom Placeholder Color */
+.gallery-search-input::placeholder {
+  color: #a5b4fc !important; /* Soft indigo accent */
+  opacity: 1 !important;     /* Ensures full brightness in Firefox */
+}
+
+/* Input Focus State (Glow on click) */
+.gallery-search-input:focus {
+  background-color: #1f2338 !important;
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25) !important;
+  outline: none !important;
+}
+
+
+/* Custom Back Link Styling */
+.back-studio-link {
+  color: #38bdf8 !important;        /* Bright sky blue for high visibility */
+  font-weight: 700 !important;      /* Bold text */
+  font-size: 0.95rem !important;    /* Slightly larger and easily readable */
+  text-decoration: none !important;
+  transition: color 0.2s ease, transform 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+/* Hover effect */
+.back-studio-link:hover {
+  color: #7dd3fc !important;        /* Lighter blue glow on hover */
+  transform: translateX(-3px);      /* Gentle move left on hover */
+}
+
+/* Studio Description Text Styling */
+.studio-description-text {
+  color: #cbd5e1 !important;        /* Slate/light gray for crisp readability */
+  font-size: 0.925rem !important;   /* Comfortable, clear reading size */
+  font-weight: 500 !important;      /* Medium weight for enhanced clarity */
+  letter-spacing: 0.2px !important; /* Subtle spacing for modern look */
+}
+
+/* Optional: Highlight key action words inside the text */
+.studio-description-text .text-highlight {
+  color: #38bdf8 !important;        /* Vibrant sky blue emphasis */
+  font-weight: 600 !important;
+}
+
+
+/* Gallery/Studio Placeholder Icon Styling */
+.studio-placeholder-icon {
+  color: #818cf8 !important;         /* Vibrant indigo/violet accent */
+  opacity: 0.9 !important;           /* Clear visibility without heavy fading */
+  filter: drop-shadow(0 0 12px rgba(129, 140, 248, 0.4)) !important; /* Soft glowing effect */
+  transition: transform 0.2s ease, color 0.2s ease !important;
+}
+
+/* Subtle hover interaction */
+.studio-placeholder-icon:hover {
+  color: #a5b4fc !important;
+  transform: scale(1.08);
+}
+
+
+/* Auth Prompt Text Styling */
+.auth-prompt-text {
+  color: #94a3b8 !important;       /* Crisp slate-gray for distinct clarity */
+  font-size: 0.875rem !important;   /* Clean readable size */
+  font-weight: 500 !important;      /* Medium weight to prevent thin blending */
+  opacity: 1 !important;            /* Removes default muted fading */
+}
+
+/* Auth Action Link Styling (e.g., Sign Up / Login) */
+.auth-prompt-link {
+  color: #38bdf8 !important;        /* Bright sky-blue accent for high visibility */
+  font-weight: 700 !important;      /* Bold link text */
+  text-decoration: underline !important;
+  margin-left: 4px !important;
+  transition: color 0.2s ease !important;
+}
+
+.auth-prompt-link:hover {
+  color: #7dd3fc !important;        /* Light cyan hover glow */
+}

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudioAI Engine | Enterprise Generative Suite</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#" onclick="showSection('generator')">
+                <i class="bi bi-magic fs-3 text-primary"></i> <span class="gradient-title fs-4">StudioAI Engine</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-4">
+                    <li class="nav-item"><a class="nav-link active" id="nav-gen" href="#" onclick="showSection('generator')"><i class="bi bi-cpu me-1"></i> Generator</a></li>
+                    <li class="nav-item"><a class="nav-link" id="nav-explore" href="#" onclick="showSection('explore')"><i class="bi bi-compass me-1"></i> Explore Showcase</a></li>
+                    <li class="nav-item"><a class="nav-link" id="nav-gallery" href="#" onclick="showSection('gallery')"><i class="bi bi-clock-history me-1"></i> History</a></li>
+                    <li class="nav-item"><a class="nav-link" id="nav-profile" href="#" onclick="showSection('profile')"><i class="bi bi-person-badge me-1"></i> Profile</a></li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-3">
+                    <div id="logged-out-view">
+                        <a href="login.html" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                            <i class="bi bi-box-arrow-in-right me-1"></i> Sign In / Sign Up
+                        </a>
+                    </div>
+
+                    <div id="logged-in-view" class="dropdown" style="display: none;">
+                        <button class="btn btn-outline-secondary dropdown-toggle d-flex align-items-center gap-2 rounded-pill px-3" type="button" data-bs-toggle="dropdown">
+                            <div class="avatar-circle" id="user-avatar-initials">A</div>
+                            <span id="user-display-name">Alex Morgan</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow border-secondary">
+                            <li><a class="dropdown-item" href="#" onclick="showSection('profile')"><i class="bi bi-person me-2"></i> Account Details</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="showSection('gallery')"><i class="bi bi-grid-3x3-gap me-2"></i> My Generations</a></li>
+                            <li><hr class="dropdown-divider border-secondary"></li>
+                            <li><a class="dropdown-item text-danger" href="#" onclick="handleLogout()"><i class="bi bi-box-arrow-right me-2"></i> Sign Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+        <div class="container text-center">
+            <h1 class="display-5 fw-bold gradient-title mb-2">Enterprise Visual Prompt Engine</h1>
+            <p class="text-secondary lead mb-3">Transform natural concepts into camera-ready photographic visual renders.</p>
+            <button class="btn btn-sparkle" onclick="showSection('explore')">
+                <i class="bi bi-stars me-2"></i> Explore 10+ Demo Prompts
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container py-4">
+        
+        <!-- Generator Section -->
+        <div id="generator-section" class="row g-4">
+            <div class="col-lg-5">
+                <div class="card p-4 shadow-sm">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="mb-0 text-white"><i class="bi bi-sliders me-2"></i> Parameters</h5>
+                        <button class="btn btn-sm btn-outline-info rounded-pill" onclick="applySuggestion()"><i class="bi bi-lightbulb"></i> Auto Suggest</button>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label small text-secondary">Subject / Item Name</label>
+                        <input type="text" id="product_name" class="form-control" placeholder="e.g., Deep Space Nebula Fjord">
+                    </div>
+
+                    <div class="row g-2 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label small text-secondary">Category</label>
+                            <select id="category" class="form-select">
+                                <option>Nature & Landscapes</option>
+                                <option>Space & Sci-Fi</option>
+                                <option>Architecture & Spaces</option>
+                                <option>Fashion & Apparel</option>
+                                <option>Home & Kitchen</option>
+                                <option>Portraits & Characters</option>
+                                <option>Automotive & Transport</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small text-secondary">Theme / Atmosphere</label>
+                            <select id="style_theme" class="form-select">
+                                <option>Cinematic Landscape</option>
+                                <option>Studio Minimalist</option>
+                                <option>Cyberpunk Neon</option>
+                                <option>Luxury Gold & Marble</option>
+                                <option>Rustic Organic</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row g-2 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label small text-secondary">Lighting Setup</label>
+                            <select id="lighting_style" class="form-select">
+                                <option>Golden Hour Natural</option>
+                                <option>Warm Soft Side-Light</option>
+                                <option>Moody Dark Studio</option>
+                                <option>Volumetric Neon</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small text-secondary">Aspect Ratio</label>
+                            <select id="aspect_ratio" class="form-select">
+                                <option>16:9</option>
+                                <option>1:1</option>
+                                <option>4:5</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small text-secondary">Description / Context</label>
+                        <textarea id="product_description" class="form-control" rows="3" placeholder="Glowing purple stars reflecting off glassy waters..."></textarea>
+                    </div>
+
+                    <button id="submit-btn" class="btn btn-primary w-100 rounded-pill py-2 fw-bold" onclick="submitJob()"><i class="bi bi-cpu me-2"></i> Generate Visual Asset</button>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="card p-4 shadow-sm min-vh-50">
+                    <h5 class="mb-3"><i class="bi bi-eye me-2"></i> Live Output View</h5>
+                    <div id="placeholder-view" class="text-center py-5 text-muted">
+                     <i class="bi bi-image fs-1 studio-placeholder-icon"></i>
+                 <p class="mt-2 mb-0 studio-description-text">Fill in parameters and click <span class="text-highlight">generate</span> to render AI visual photography.</p>
+                    </div>
+
+                    <div id="result-view" style="display: none;">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span id="status-badge" class="badge bg-warning text-dark">PENDING</span>
+                            <small class="text-muted">Job ID: <span id="job-id-text"></span></small>
+                        </div>
+
+                        <div id="image-container" class="mb-3 text-center" style="display: none;">
+                            <img id="output-image" src="" class="img-fluid rounded mb-3 shadow" style="max-height: 400px;" alt="AI Generated Asset">
+                            <div class="d-flex justify-content-center gap-2">
+                                <button class="btn btn-sm btn-outline-light rounded-pill" onclick="downloadCurrentImage()"><i class="bi bi-download me-1"></i> Download</button>
+                            </div>
+                        </div>
+
+                        <div id="prompt-container" style="display: none;">
+                            <label class="fw-bold text-secondary form-label small mb-1">Generated Master Prompt:</label>
+                            <p id="output-prompt" class="p-3 rounded bg-dark border border-secondary text-light small mb-0"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dedicated User Profile Section -->
+        <div id="profile-section" style="display: none;">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card p-4 shadow-sm">
+                        <div class="text-center mb-4">
+                            <div class="avatar-circle mx-auto mb-3" style="width: 80px; height: 80px; font-size: 2rem;" id="profile-large-avatar">A</div>
+                            <h4 class="fw-bold text-white mb-1" id="profile-user-name">Alex Morgan</h4>
+                            <p class="text-muted small mb-0" id="profile-user-email">alex@studioai.com</p>
+                            <span class="badge bg-primary-subtle text-primary border border-primary-subtle mt-2">Enterprise Plan</span>
+                        </div>
+
+                        <form onsubmit="saveProfileUpdate(event)">
+                            <div class="mb-3">
+                                <label class="form-label small text-secondary">Full Name</label>
+                                <input type="text" id="edit_profile_name" class="form-control" value="">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label small text-secondary">Email Address</label>
+                                <input type="email" id="edit_profile_email" class="form-control" disabled value="">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 rounded-pill mb-4"><i class="bi bi-check-circle me-1"></i> Save Changes</button>
+                        </form>
+
+                        <div class="border-top border-secondary pt-3">
+                            <h6 class="text-secondary small fw-bold mb-3">ACCOUNT DETAILS</h6>
+                            <div class="list-group list-group-flush border border-secondary rounded overflow-hidden">
+                                <div class="list-group-item bg-dark text-white border-secondary d-flex justify-content-between align-items-center">
+                                    <span>API Tier</span>
+                                    <span class="badge bg-success">Active Standard</span>
+                                </div>
+                                <div class="list-group-item bg-dark text-white border-secondary d-flex justify-content-between align-items-center">
+                                    <span>Generation Credits</span>
+                                    <span class="text-info fw-bold">Unlimited</span>
+                                </div>
+                                <div class="list-group-item bg-dark text-white border-secondary d-flex justify-content-between align-items-center">
+                                    <span>Member Since</span>
+                                    <span class="text-muted" id="profile-member-since">Oct 2026</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 text-center">
+                            <button class="btn btn-outline-danger btn-sm rounded-pill" onclick="handleLogout()"><i class="bi bi-box-arrow-right me-1"></i> Sign Out of Account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Explore Section -->
+        <div id="explore-section" class="mt-2" style="display: none;">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h3 class="fw-bold gradient-title mb-1"><i class="bi bi-compass me-2"></i> Explore Community Showcase</h3>
+                    <p class="text-muted small mb-0">Select any showcase prompt to twist parameters directly in the generator.</p>
+                </div>
+            </div>
+            <div id="explore-grid" class="row g-4"></div>
+        </div>
+
+        <!-- History Section -->
+        <div id="gallery-section" class="mt-2" style="display: none;">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="fw-bold gradient-title mb-0"><i class="bi bi-clock-history me-2"></i> Asset Generation History</h3>
+              <!--  <input type="text" id="search-gallery" class="form-control form-control-sm w-25" placeholder="Filter history..." onkeyup="filterGallery()"> -->
+<input type="text" id="search-gallery" class="form-control form-control-sm w-25 gallery-search-input" placeholder="Filter history..." onkeyup="filterGallery()">
+            </div>
+            <div id="history-grid" class="row g-3"></div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content text-center p-3">
+                <div class="modal-body">
+                    <i class="bi bi-exclamation-triangle text-warning fs-1"></i>
+                    <h5 class="mt-2">Delete Asset?</h5>
+                    <p class="text-muted small mb-0">This operation cannot be undone. Are you sure?</p>
+                </div>
+                <div class="d-flex justify-content-center gap-2 mt-2">
+                    <button type="button" class="btn btn-sm btn-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-sm btn-danger rounded-pill px-3" onclick="confirmDeleteAction()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- History/Asset Details Modal -->
+    <div class="modal fade" id="historyModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title" id="modalTitle">Asset Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalImage" src="" class="img-fluid rounded mb-3" style="max-height: 450px;" alt="Asset Image">
+                    <div class="text-start bg-dark p-3 rounded border border-secondary mb-3">
+                        <strong class="text-secondary small d-block mb-1">MASTER PROMPT:</strong>
+                        <p id="modalPrompt" class="mb-0 text-light small"></p>
+                    </div>
+                </div>
+                <div class="modal-footer border-secondary justify-content-between">
+                    <button type="button" class="btn btn-outline-warning rounded-pill" onclick="twistCurrentAsset()"><i class="bi bi-arrow-repeat me-1"></i> Twist Prompt</button>
+                    <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer py-3 text-center text-muted border-top border-secondary mt-auto">
+        <div class="container d-flex justify-content-between align-items-center">
+            <small>&copy; 2026 StudioAI Engine Inc. All rights reserved.</small>
+            <div>
+                <a href="#" class="text-muted me-3 text-decoration-none small">Privacy Policy</a>
+                <a href="#" class="text-muted text-decoration-none small">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
